@@ -1,0 +1,23 @@
+# Statistics & Deep Learning Project Rules
+
+## Language Preferences
+- **Statistics (R):** Always prioritize the **Tidyverse** ecosystem (dplyr, ggplot2, tidyr). Use `<-` for assignment, not `=`.
+- **Deep Learning (Python):** Use **PyTorch** unless specified otherwise. Follow PEP 8 standards.
+
+## Coding Style (R)
+- Use `|>` (native pipe) or `%>%` (magrittr pipe) for data manipulation.
+- For visualizations, always use `ggplot2`. Ensure plots have clear labels, titles, and `theme_minimal()`.
+- When writing statistical tests (t-tests, ANOVA), always include code to check for assumptions (normality, variance).
+
+## Mathematics (LaTeX)
+- When explaining probability or statistics, use standard LaTeX blocks:
+  - Inline: $P(X=x)$
+  - Block: $$E[X] = \sum x P(x)$$
+
+## Technical Context
+- I am a Front-End Developer (TypeScript/Next.js), so feel free to use programming analogies (e.g., comparing R data frames to arrays of objects).
+- This is for a college course. Keep code readable and well-commented for academic submission.
+
+## Prohibited
+- Do not use `attach()` in R.
+- Avoid Base R plotting (e.g., `plot(x, y)`) unless specifically asked.
