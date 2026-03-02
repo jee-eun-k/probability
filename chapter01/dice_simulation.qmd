@@ -1,0 +1,21 @@
+  ---
+  title: "Dice Rolling Simulation"
+  format: html
+  ---
+
+  ```{r}
+  library(ggplot2); library(magrittr);
+  RDice=function(nn){sample(1:6, nn, replace=TRUE) %>% table() %>% `/`(nn)}
+  set.seed(1234567)
+  dice_1=RDice(12)
+  dice_2=RDice(120)
+  dice_3=RDice(1200)
+  dice_4=RDice(120000)
+  # data transformation
+  dice = c(as.numeric(dice_1), as.numeric(dice_2), as.numeric(dice_3), as.numeric(dice_4))
+  nn = c(rep("(a) n=12", 6), rep("(b) n=120", 6), rep("(c) n=1200", 6), rep("(d) n=120000", 6))
+  num = c(rep(1:6, 4))
+  dice_result = data.frame(nn, num, dice)
+  # ggplot2
+  ggplot(data = dice_result, aes(x=num, y=dice)) + geom_bar(stat="identity", alpha = 0.8) + xlab("\n Result on Dice") + ylab("Relative Frequency\n") + geom_hline(yintercept=1/6, color=2, lty=2) + ylim(0, 0.3) + facet_wrap(~nn, ncol=2)
+  ``` 

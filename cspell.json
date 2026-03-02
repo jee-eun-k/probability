@@ -1,0 +1,11 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "tidyverse",
+    "tibble",
+    "ggplot2",
+    "dplyr",
+    "tidyr"
+  ]
+}
