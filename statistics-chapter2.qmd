@@ -64,7 +64,7 @@ ggplot(data=dat1) +
 
   # 2-9
 
-  ```{r}
+```{r}
 library(ggplot2)
 
 ## factor : 순서형 범주형 변수로 인식, levels로 순서 지정
@@ -126,14 +126,42 @@ ggplot(data=dat3) +
 
 
  # 2-13
+## breaks=n : 구간의 개수를 n개로 지정
 
- ```{r}
+```{r}
 set.seed(2021)
 rn <- c(rnorm(100, 5, 2), rnorm(100, 10, 2))
 
 hist(rn)
 hist(rn, breaks=20, main="", xlab="value")
 hist(rn, breaks=5, main="", xlab="value")
-## breaks=n : 구간의 개수를 n개로 지정
+```
+
+# 2-14
+
+```{r}
+age <- c(57, 61, 47, 57, 48, 58, 57, 61, 64, 58, 68, 51)
+
+m.age <- mean(age)
+par(xpd=TRUE)
+stripchart(age, axes=F, pch=19, xlim=c(45, 70), method="stack", offset=5, cex=1.5)
+axis(1, at=seq(45, 70, 5))
+points(m.age -5, pch=17, cex=2, col="blue")
+```
+
+# 2-15
+
+```{r}
+
+age <- c(57, 61, 47, 57, 48, 58, 57, 61, 54, 50, 68, 51)
+boxplot(age, ylab="Age")
+
+```
+
+# 2-17
+
+```{r}
+member <- c(92, 107, 180, 90, 78, 91, 102, 88, 106, 125, 95, 102, 162)
+boxplot(member, ylab="Number of board members")
 
 ```
