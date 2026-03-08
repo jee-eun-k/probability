@@ -1,0 +1,46 @@
+```{r}
+# Install forcats if not already installed
+# install.packages("forcats")
+
+# Load libraries
+library(ggplot2)
+library(forcats)
+
+
+# Data
+transp <- c("bycicle", "bus", "bus", "walking", "bus", "bycicle", "bycicle",
+            "bus", "bus", "bus" , "bycicle", "bus", "bycicle", "bycicle", 
+            "walking", "bus", "bus", "bicycle", "bicycle", "walking", "walking",
+            "bicycle", "bus", "bus", "bus", "bus", "bicycle", "bus", "bus",
+            "bicycle", "bicycle", "bicycle")
+dat1 <- data.frame(transp)
+
+# Graph
+# ggplot() initializes the plot object; data=dat1 specifies the data source
+ggplot(data=dat1) +
+  # geom_bar() adds a bar layer; mapping=aes() defines how data maps to visuals
+  # fct_infreq(transp) reorders the categories of 'transp' by their frequency
+  # geom_bar(mapping=aes(x=(transp))) +
+  geom_bar(mapping=aes(x=fct_infreq(transp))) +
+  # xlab() sets the label for the x-axis
+  xlab("Transportations")
+
+```
+
+* ggplot(data=dat1):
+  * This initializes the plot.
+  * data=dat1 tells R to use your dataframe dat1 as the source of truth for the visualization.
+
+* +:
+  * In ggplot2, the plus sign is used to "layer" components on top of each other. You start with a base plot and then add layers (geoms, scales, labels).
+
+* geom_bar():
+  * This specifies the geometric object to use. geom_bar specifically creates bars where the height is proportional to the number of cases in each group (frequency).
+* mapping=aes(x=...):
+  * aes (Aesthetic mapping) defines how variables in your data are mapped to visual properties of the plot.
+  * Here, we map the x-axis to your transportation data.
+* fct_infreq(transp):
+  * This is a function from the forcats package.
+  * By default, ggplot orders categorical data alphabetically. fct_infreq reorders the categories of transp based on their frequency (count), so the most frequent transportation method appears first on the left.
+* xlab("Transportations"):
+  * This simply sets a custom user-friendly label for the X-axis.
