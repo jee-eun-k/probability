@@ -1,0 +1,28 @@
+```{r}
+# Install forcats if not already installed
+# install.packages("forcats")
+
+# Load libraries
+library(ggplot2)
+library(forcats)
+
+
+
+# Data
+transp <- c("bycicle", "bus", "bus", "walking", "bus", "bycicle", "bycicle",
+            "bus", "bus", "bus" , "bycicle", "bus", "bycicle", "bycicle", 
+            "walking", "bus", "bus", "bicycle", "bicycle", "walking", "walking",
+            "bicycle", "bus", "bus", "bus", "bus", "bicycle", "bus", "bus",
+            "bicycle", "bicycle", "bicycle")
+
+table(transp)
+dat3 <- data.frame(transportation=c("bus", "bicycle", "walking"), count=c(15, 13, 4))
+
+# Graph
+
+ggplot(data=dat3) +
+  geom_bar(mapping=aes(x="", y=count, fill=transportation), stat="identity") +
+  coord_polar("y", start=0) +
+  xlab("")
+
+```
