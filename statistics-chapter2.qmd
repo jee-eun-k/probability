@@ -1,0 +1,139 @@
+
+# 2-6
+```{r}
+score <- c(65, 75, 85, 95, 100, 70, 80, 90, 95, 100, 75, 85, 95, 100, 80, 90, 95, 100, 85, 95, 100, 90, 95, 100, 95, 100, 100)
+hist(score, main="")
+
+```
+
+# 2-7
+```{r}
+rv <- c(0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5.0, 5.1, 5.2, 5.3, 5.4, 14, 17, 18, 19, 21, 21, 23, 25, 27, 28, 32, 34, 36, 41, 42, 44, 48, 49, 51, 54, 59, 60, 61, 62, 80, 240)
+hist(rv, main="",xlab="CRP", breaks=20)
+
+```
+
+# 2-8
+```{r}
+# Install forcats if not already installed
+# install.packages("forcats")
+
+# Load libraries
+library(ggplot2)
+library(forcats)
+
+
+# Data
+transp <- c("bycicle", "bus", "bus", "walking", "bus", "bycicle", "bycicle",
+            "bus", "bus", "bus" , "bycicle", "bus", "bycicle", "bycicle", 
+            "walking", "bus", "bus", "bicycle", "bicycle", "walking", "walking",
+            "bicycle", "bus", "bus", "bus", "bus", "bicycle", "bus", "bus",
+            "bicycle", "bicycle", "bicycle")
+dat1 <- data.frame(transp)
+
+# Graph
+# ggplot() initializes the plot object; data=dat1 specifies the data source
+ggplot(data=dat1) +
+  # geom_bar() adds a bar layer; mapping=aes() defines how data maps to visuals
+  # fct_infreq(transp) reorders the categories of 'transp' by their frequency
+  # geom_bar(mapping=aes(x=(transp))) +
+  geom_bar(mapping=aes(x=fct_infreq(transp))) +
+  # xlab() sets the label for the x-axis
+  xlab("Transportations")
+
+```
+
+* ggplot(data=dat1):
+  * This initializes the plot.
+  * data=dat1 tells R to use your dataframe dat1 as the source of truth for the visualization.
+
+* +:
+  * In ggplot2, the plus sign is used to "layer" components on top of each other. You start with a base plot and then add layers (geoms, scales, labels).
+
+* geom_bar():
+  * This specifies the geometric object to use. geom_bar specifically creates bars where the height is proportional to the number of cases in each group (frequency).
+* mapping=aes(x=...):
+  * aes (Aesthetic mapping) defines how variables in your data are mapped to visual properties of the plot.
+  * Here, we map the x-axis to your transportation data.
+* fct_infreq(transp):
+  * This is a function from the forcats package.
+  * By default, ggplot orders categorical data alphabetically. fct_infreq reorders the categories of transp based on their frequency (count), so the most frequent transportation method appears first on the left.
+* xlab("Transportations"):
+  * This simply sets a custom user-friendly label for the X-axis.
+
+
+  # 2-9
+
+  ```{r}
+library(ggplot2)
+
+## factor : 순서형 범주형 변수로 인식, levels로 순서 지정
+obesity <- factor(c("underweight", "normal", "overweight", "obese"),
+                  levels = c("underweight", "normal", "overweight", "obese"))
+count <- c(6, 69, 27, 13) # 빈도수
+perc <- count/sum(count) * 100 # 백분율 계산
+dat2 <- data.frame(obesity, count, perc)
+
+# Graph
+## stat="identity" : y축 값을 그대로 사용
+## geom_bar()의 기본값은 stat="count"
+## geom_col()은 stat="identity"가 기본값
+ggplot(data=dat2) +
+    geom_bar(mapping=aes(x=obesity, y=perc), stat="identity") +
+    xlab("Obesity") +
+    ylab("Percentage (%)")
+
+```
+
+
+# 2-10
+
+```{r}
+# Install forcats if not already installed
+# install.packages("forcats")
+
+# Load libraries
+library(ggplot2)
+library(forcats)
+
+
+
+# Data
+transp <- c("bycicle", "bus", "bus", "walking", "bus", "bycicle", "bycicle",
+            "bus", "bus", "bus" , "bycicle", "bus", "bycicle", "bycicle", 
+            "walking", "bus", "bus", "bicycle", "bicycle", "walking", "walking",
+            "bicycle", "bus", "bus", "bus", "bus", "bicycle", "bus", "bus",
+            "bicycle", "bicycle", "bicycle")
+
+table(transp)
+dat3 <- data.frame(transportation=c("bus", "bicycle", "walking"), count=c(15, 13, 4))
+
+# Graph
+
+ggplot(data=dat3) +
+  geom_bar(mapping=aes(x="", y=count, fill=transportation), stat="identity") +
+  coord_polar("y", start=0) +
+  xlab("")
+
+``` 
+
+## fill: 색상을 지정하는 옵션, 
+ ## y: y축의 값을 지정하는 옵션, 
+ ## stat: 통계량을 지정하는 옵션, 
+ ## coord_polar: 극좌표로 변환하는 옵션, 
+ ## xlab: x축의 이름을 지정하는 옵션, 
+
+
+
+ # 2-13
+
+ ```{r}
+set.seed(2021)
+rn <- c(rnorm(100, 5, 2), rnorm(100, 10, 2))
+
+hist(rn)
+hist(rn, breaks=20, main="", xlab="value")
+hist(rn, breaks=5, main="", xlab="value")
+## breaks=n : 구간의 개수를 n개로 지정
+
+```
