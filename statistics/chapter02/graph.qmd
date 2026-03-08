@@ -1,0 +1,19 @@
+```{r}
+# Load libraries
+library(ggplot2)
+library(forcats)
+
+# Data
+transp <- c("bycicle", "bus", "bus", "walking", "bus", "bycicle", "bycicle",
+            "bus", "bus", "bus" , "bycicle", "bus", "bycicle", "bycicle", 
+            "walking", "bus", "bus", "bicycle", "bicycle", "walking", "walking",
+            "bicycle", "bus", "bus", "bus", "bus", "bicycle", "bus", "bus",
+            "bicycle", "bicycle", "bicycle")
+dat1 <- data.frame(transp)
+
+# Graph
+ggplot(dat1, aes(x = forcats::fct_infreq(transp))) +
+  geom_bar() +
+    xlab("Transporations")
+
+```
